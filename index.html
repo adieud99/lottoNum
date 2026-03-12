@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>로또번호추천</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #111;
+            margin: 0;
+        }
+        .machine-box {
+            position: relative;
+            width: 900px;
+            margin: 50px auto;
+        }
+        .machine {
+            width: 100%;
+        }
+        .slot-container {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 20px;
+        }
+        .slot {
+            width: 100px;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+            font-weight: bold;
+            color: black;
+        }
+        .spin-btn {
+            position: absolute;
+            bottom: 40px;
+            right: 80px;
+            padding: 12px 25px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="machine-box">
+        <img class="machine" src="./images/machine.png">
+        <div class="slot-container">
+            <div class="slot">0</div>
+            <div class="slot">0</div>
+            <div class="slot">0</div>
+            <div class="slot">0</div>
+            <div class="slot">0</div>
+            <div class="slot">0</div>
+        </div>
+        <button class="spin-btn" onclick="getLotto()">굴리기</button>
+    </div>
+    <script>
+        function getLotto() {
+            const numbers = [];
+            while (numbers.length < 6) {
+                let num = Math.floor(Math.random() * 45) + 1;
+                if (!numbers.includes(num)) {
+                    numbers.push(num);
+                }
+            }
+            const slots = document.getElementsByClassName("slot");
+            for (let i = 0; i < 6; i++) {
+                slots[i].innerText = numbers[i];
+            }
+            console.log(numbers);
+        }
+    </script>
+</body>
+</html>
